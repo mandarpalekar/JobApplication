@@ -1,0 +1,85 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Project files
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# STS (Spring Tool Suite)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+*.log
+spring.log
+
+# Temporary files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS-specific files
+*.DS_Store
+*.AppleDouble
+.LSOverride
+
+# Python virtualenv
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+
+# Miscellaneous
+.classpath
+.project
+.settings/
+bin/
+tmp/
+.sass-cache/
+*.log
+*.lock
+*.logfile
+*.bak
+
+# PostgreSQL
+*.pgdata/

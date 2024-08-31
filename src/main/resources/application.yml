@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_application
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true  # Optional: formats SQL queries for better readability
+
+  logging:
+    level:
+      org.hibernate.SQL: DEBUG
+      org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+      org.springframework: DEBUG
+
+  main:
+    log-startup-info: true  # Added `true` to ensure startup info is logged
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Allows all management endpoints to be exposed; ensure this is safe for production
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Job Application
+    description: A simple job application system
+    version: 1.0.0
