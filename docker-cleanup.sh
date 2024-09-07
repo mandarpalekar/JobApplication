@@ -4,4 +4,4 @@
 docker image prune -f
 
 # Bring up your Docker Compose setup
-docker-compose up -d
+docker-compose up -d --build
