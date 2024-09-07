@@ -2,7 +2,6 @@ package com.springsynergy.jobapp.Job.service;
 
 import com.springsynergy.jobapp.Company.entity.Company;
 import com.springsynergy.jobapp.Company.repository.CompanyRepository;
-import com.springsynergy.jobapp.Company.service.CompanyService;
 import com.springsynergy.jobapp.Job.entity.Job;
 import com.springsynergy.jobapp.exception.JobAlreadyExistsException;
 import com.springsynergy.jobapp.Job.model.JobDto;
@@ -52,12 +51,12 @@ public class JobServiceImpl implements JobService {
             throw new JobAlreadyExistsException("Job with title " + jobDto.getJobTitle() + " already exists.");
         } else {
             Job job = entityDtoMapper.jobDtoToJob(jobDto);
-            Optional<Company> companyOptional = companyRepository.findByCompanyName(jobDto.getCompanyName());
+            Optional<Company> companyOptional = companyRepository.findByCompanyName(jobDto.getCompany_name());
             if (companyOptional.isPresent()) {
                 job.setCompany(companyOptional.get());
                 jobRepository.save(job);
             } else {
-                throw new JobAlreadyExistsException("Company with name " + jobDto.getCompanyName() + " does not exist.");
+                throw new JobAlreadyExistsException("Company with name " + jobDto.getCompany_name() + " does not exist.");
             }
         }
     }
@@ -81,12 +80,12 @@ public class JobServiceImpl implements JobService {
     @Override
     public boolean updateJobById(UUID jobId, JobDto jobDto) {
         Optional<Job> jobOptional = jobRepository.findById(jobId);
-        String decodedCompanyName = URLDecoder.decode(jobDto.getCompanyName(), StandardCharsets.UTF_8);
+        String decodedCompanyName = URLDecoder.decode(jobDto.getCompany_name(), StandardCharsets.UTF_8);
         log.info("Company name: {}", decodedCompanyName);
         log.info("Company name length: {}", decodedCompanyName.length());
         Optional<Company> companyOptional = companyRepository.findByCompanyName(decodedCompanyName);
         if(!companyOptional.isPresent()){
-            throw new JobAlreadyExistsException("Company with name " + jobDto.getCompanyName() + " does not exist.");
+            throw new JobAlreadyExistsException("Company with name " + jobDto.getCompany_name() + " does not exist.");
         } else {
             Company company = companyOptional.get();
             if (jobOptional.isPresent()) {

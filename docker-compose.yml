@@ -1,0 +1,22 @@
+services:
+  spring-boot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mandarpalekar/jobapplicationimage:1.0
+    container_name: spring-boot-app
+    platform: linux/amd64
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://31ab414ce08b:5432/job_application
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+    ports:
+      - "8080:8080"
+    volumes:
+      - /Users/mandarpalekar/logs:/app/logs
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    external: true

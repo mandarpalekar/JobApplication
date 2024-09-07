@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.springsynergy.jobapp.Company.model.CompanyDto;
 import com.springsynergy.jobapp.Company.service.CompanyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springsynergy.jobapp.Job.model.JobDto;
 import com.springsynergy.jobapp.util.DtoToStringConverter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/v1/companies")
 @RequiredArgsConstructor
+@Slf4j
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -66,6 +67,7 @@ public class CompanyController {
     @PostMapping("/company/createCompany")
     public ResponseEntity<String> createCompany(@RequestBody CompanyDto companyDto) {
         try{
+            log.info("Company: {}", companyDto);
             companyService.createCompany(companyDto);
             return new ResponseEntity<>("Company created", HttpStatus.CREATED);
         } catch (Exception e) {

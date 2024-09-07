@@ -53,8 +53,12 @@ public class CompanyServiceImpl implements CompanyService {
             throw new CompanyAlreadyExistsException("Company with name " + companyDto.getName() + " already exists.");
         } else {
             Company company = entityDtoMapper.companyDtoToCompany(companyDto);
+            log.info("Company: {}", company);
             if(!CollectionUtils.isEmpty(company.getJobs())){
-                company.getJobs().forEach(job -> job.setCompany(company));
+                company.getJobs().forEach(job -> {
+                    log.info("Job: {}", job);
+                    job.setCompany(company);
+                });
             }
             companyRepository.save(company);
         }
